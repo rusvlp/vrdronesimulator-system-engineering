@@ -1,0 +1,21 @@
+[book]
+authors = ["vlad"]
+language = "ru"
+multilingual = false
+src = "src"
+title = "System Engineering - VRDroneSimulator - MDBook"
+
+
+[build]
+build-dir = "book"
+create-missing = true
+extra-watch-dirs = ["./theme"] 
+
+[output.html]
+additional-css = ["./theme/additional.css"]
+additional-js = ["./theme/add-liqud-glass-theme.js", "./theme/liquid-glass.css", "./theme/bg.mp4", "./theme/add-new-favicon.js", "./theme/artem.jpg"]
+
+
+[preprocessor.drawio]
+command = "./_tools/mdbook-drawio/target/release/mdbook-drawio"
+

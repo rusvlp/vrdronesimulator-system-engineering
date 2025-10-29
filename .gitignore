@@ -1,0 +1,13 @@
+/book
+
+
+# Added by cargo
+
+/target
+
+_tools/mdbook-drawio/target
+# Added by cargo
+#
+# already existing elements were commented out
+
+#/target

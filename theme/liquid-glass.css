@@ -1,0 +1,362 @@
+:root {
+    /* Цветовая палитра в стиле Apple */
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    --glass-blur: blur(20px);
+    --glass-backdrop: blur(10px);
+    
+    /* Основные цвета */
+    --primary-color: #007AFF;
+    --primary-hover: #0056CC;
+    --text-primary: rgba(255, 255, 255, 0.92);
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.5);
+    
+    /* Градиенты */
+    --glass-gradient: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0.025) 100%);
+    
+    /* Анимации */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Базовые стили для эффекта стекла */
+.glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+}
+
+.glass-panel {
+    background: var(--glass-gradient);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: var(--glass-shadow);
+}
+
+/* Сайдбар */
+#sidebar {
+    background: rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-right: 1px solid var(--glass-border);
+}
+
+.sidebar-scrollbox {
+    background: transparent !important;
+}
+
+/* Навигация */
+#menu-bar {
+    background: rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.menu-title {
+    color: var(--text-primary) !important;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+/* Кнопки */
+.icon-button {
+    background: var(--glass-bg) !important;
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 10px !important;
+    transition: var(--transition-smooth) !important;
+    color: var(--text-secondary) !important;
+}
+
+.icon-button:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    transform: translateY(-1px);
+    color: var(--text-primary) !important;
+}
+
+/* Контент */
+.content {
+    background: transparent !important;
+}
+
+main {
+    background: transparent !important;
+    color: var(--text-primary) !important;
+}
+
+/* Заголовки */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary) !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.3px;
+}
+
+h1 {
+    font-size: 2.5rem !important;
+    background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Текст */
+p, li, td {
+    color: var(--text-secondary) !important;
+    line-height: 1.6;
+}
+
+/* Ссылки */
+a {
+    color: var(--primary-color) !important;
+    text-decoration: none !important;
+    transition: var(--transition-smooth) !important;
+    position: relative;
+}
+
+a:hover {
+    color: var(--primary-hover) !important;
+    transform: translateY(-1px);
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: var(--transition-smooth);
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+/* Код */
+code {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 2px 6px;
+    color: var(--text-primary) !important;
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+}
+
+pre {
+    background: rgba(0, 0, 0, 0.4) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 12px !important;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+}
+
+/* Блоки с предупреждениями и т.д. */
+blockquote {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-left: 4px solid var(--primary-color) !important;
+    border-radius: 8px;
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+}
+
+/* Таблицы */
+table {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 12px;
+    overflow: hidden;
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+}
+
+th {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: var(--text-primary) !important;
+    font-weight: 600;
+}
+
+td {
+    border-color: var(--glass-border) !important;
+}
+
+/* Поиск */
+#searchbar-outer {
+    background: rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+}
+
+#searchbar {
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 12px !important;
+    color: var(--text-primary) !important;
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+}
+
+#searchbar::placeholder {
+    color: var(--text-muted) !important;
+}
+
+/* Результаты поиска */
+#searchresults-outer {
+    background: rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 12px;
+}
+
+#searchresults li {
+    border-color: var(--glass-border) !important;
+}
+
+#searchresults li a {
+    color: var(--text-secondary) !important;
+}
+
+#searchresults li a:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: var(--text-primary) !important;
+}
+
+/* iframe для диаграмм */
+.drawio-viewer {
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+}
+
+/* Скроллбар */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+main > * {
+    animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Адаптивность */
+@media (max-width: 1080px) {
+    #sidebar {
+        background: rgba(0, 0, 0, 0.6) !important;
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
+    }
+}
+
+/* Темная тема по умолчанию */
+html {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) fixed !important;
+    min-height: 100vh;
+}
+
+/* Эффекты при наведении для интерактивных элементов */
+.nav-chapters:hover,
+.sidebar-visible #sidebar-resize-handle:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+}
+
+/* Улучшенные фокус-стилы для доступности */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: 8px;
+}
+
+#apple-logo{
+    width: auto;
+    margin-top: 20px;
+}
+
+/* === Фоновое видео === */
+#background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  pointer-events: none;
+}
+
+/* Полупрозрачная подложка для читаемости */
+#video-overlay {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+/* Статичный фон (по умолчанию) */
+html {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) fixed !important;
+  min-height: 100vh;
+  transition: background 1s ease-in-out;
+}
+
+/* Когда включено видео */
+html.video-active {
+  background: none !important;
+}
+
+html.video-active #background-video,
+html.video-active #video-overlay {
+  opacity: 1;
+}
