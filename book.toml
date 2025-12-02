@@ -9,7 +9,7 @@ title = "System Engineering - VRDroneSimulator - MDBook"
 [build]
 build-dir = "book"
 create-missing = true
-extra-watch-dirs = ["./theme"] 
+extra-watch-dirs = ["./theme", "./src/diagrams"] 
 
 [output.html]
 additional-css = ["./theme/additional.css"]
