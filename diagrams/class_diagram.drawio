@@ -1,0 +1,742 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.2.7" pages="4">
+  <diagram name="Создание локации для обучения операторов БПЛА на основании спутниковых снимков при помощи ИИ" id="LEecVnMExKUxvT7MLC6S">
+    <mxGraphModel dx="2037" dy="1073" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-1" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="LocationCreationService" vertex="1">
+          <mxGeometry height="300" width="240" x="500" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-2" parent="EP3SFlS81vF1yBjOrWmF-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ nnModel: NeuralNetworkModel&lt;div&gt;+ storage: LocationStorage&lt;/div&gt;" vertex="1">
+          <mxGeometry height="34" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-3" parent="EP3SFlS81vF1yBjOrWmF-1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-4" parent="EP3SFlS81vF1yBjOrWmF-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;+ createLocation(image: SatelliteImage): GeneratedLocation&lt;br&gt;- preprocessImage(image: SatelliteImage): ProcessedImage&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;- runSegmentation(processed: ProcessedImage): SegmentationResult&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;- generateTerrain(seg: SegmentationResult): TerrainMesh&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;- generateObjects(seg: SegmentationResult): List&amp;lt;SceneObject&amp;gt;&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;- assembleLocation(terrain, objects): GeneratedLocation&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;- validate(location: GeneratedLocation): bool&lt;br&gt;+ save(location: GeneratedLocation)&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="232" width="240" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-5" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="SatelliteImage" vertex="1">
+          <mxGeometry height="140" width="240" x="110" y="549" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-6" parent="EP3SFlS81vF1yBjOrWmF-5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ id: string&lt;div&gt;+ rawData: Binary&lt;/div&gt;&lt;div&gt;+ resolution: float&lt;div&gt;+ geoBounds: CoordinateSystem&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="64" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-7" parent="EP3SFlS81vF1yBjOrWmF-5" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-8" parent="EP3SFlS81vF1yBjOrWmF-5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;+ loadFromFile (path: string)&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;+ getPixelData()&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="42" width="240" y="98" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-9" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="ImagePreprocessor" vertex="1">
+          <mxGeometry height="110" width="240" x="115" y="339" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-11" parent="EP3SFlS81vF1yBjOrWmF-9" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-12" parent="EP3SFlS81vF1yBjOrWmF-9" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;+ normalize(image: SatelliteInage): ProcessedImage&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;- enhanceContrast(image)&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;- removeNoise(image)&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="76" width="240" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-13" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; text-align: start; white-space-collapse: preserve; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font&gt;NeuralNetworkModel&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="240" x="500" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-14" parent="EP3SFlS81vF1yBjOrWmF-13" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;+ modelPath: string&lt;br&gt;+ inputSize: (int, int)&lt;br&gt;+ classes: List&amp;lt;string&amp;gt;&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="54" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-15" parent="EP3SFlS81vF1yBjOrWmF-13" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-16" parent="EP3SFlS81vF1yBjOrWmF-13" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;font style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;+ &lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;infer(image: ProcessedImage): SegmentationResult&lt;br&gt;+ loadModel()&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="62" width="240" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-17" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;SegmentationResult&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="130" width="240" x="500" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-18" parent="EP3SFlS81vF1yBjOrWmF-17" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ terrainMask: Matrix&lt;br&gt;+ roadMask: Matrix&lt;br&gt;+ buildingMask: Matrix&lt;br&gt;+ vegetationMask: Matrix&lt;/span&gt;" vertex="1">
+          <mxGeometry height="74" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-19" parent="EP3SFlS81vF1yBjOrWmF-17" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-20" parent="EP3SFlS81vF1yBjOrWmF-17" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ getMask(type: string)&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="22" width="240" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-21" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;TerrainGenerator&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="240" x="500" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-22" parent="EP3SFlS81vF1yBjOrWmF-21" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;- baseElevation: float&lt;/span&gt;" vertex="1">
+          <mxGeometry height="24" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-23" parent="EP3SFlS81vF1yBjOrWmF-21" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-24" parent="EP3SFlS81vF1yBjOrWmF-21" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ generate(segmentation: SegmentationResult): TerrainMesh&lt;br&gt;- applyElevationData(mesh, elevationMap)&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="240" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-25" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;ObjectGenerator&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="860" y="309" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-27" parent="EP3SFlS81vF1yBjOrWmF-25" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-28" parent="EP3SFlS81vF1yBjOrWmF-25" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ createBuildings(mask: Matrix): List&amp;lt;Building&amp;gt;&lt;br&gt;+ createVegetation(mask: Matrix): List&amp;lt;Tree&amp;gt;&lt;br&gt;+ createRoads(mask: Matrix): List&amp;lt;Road&amp;gt;&lt;/span&gt; &lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="86" width="240" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-29" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;MapMetadataExtractor&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="240" x="120" y="774" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-30" parent="EP3SFlS81vF1yBjOrWmF-29" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-31" parent="EP3SFlS81vF1yBjOrWmF-29" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;extractCoordinates(image): CoordinateSystem&lt;br/&gt;extractScale(image): float&lt;/span&gt; &lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="56" width="240" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-36" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;GeneratedLocation&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="240" x="860" y="849" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-37" parent="EP3SFlS81vF1yBjOrWmF-36" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ id: string&lt;br&gt;+ terrain: TerrainMesh&lt;br&gt;+ objects: List&lt;br&gt;+ originGeoPoint: CoordinateSystem&lt;br&gt;+ createdBy: User&lt;br&gt;+ createdAt: datetime" vertex="1">
+          <mxGeometry height="104" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-38" parent="EP3SFlS81vF1yBjOrWmF-36" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-39" parent="EP3SFlS81vF1yBjOrWmF-36" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="12" width="240" y="138" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-40" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;LocationStorage&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="240" x="860" y="669" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-41" parent="EP3SFlS81vF1yBjOrWmF-40" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-42" parent="EP3SFlS81vF1yBjOrWmF-40" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ save(location: GeneratedLocation)&lt;br&gt;+ load(id: string): GeneratedLocation&lt;br&gt;+ delete(id: string)&lt;/span&gt; &lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="56" width="240" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-43" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;LocationValidation&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="240" x="860" y="489" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-44" parent="EP3SFlS81vF1yBjOrWmF-43" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-45" parent="EP3SFlS81vF1yBjOrWmF-43" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ validateTerrain(mesh: TerrainMesh): bool&lt;br&gt;+ validateObjects(objects: List&amp;lt;SceneObject&amp;gt;): bool&lt;br&gt;+ checkSimulationReady(location): bool&lt;/span&gt; &lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="76" width="240" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-46" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="User&lt;div&gt;&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="240" x="115" y="969" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-47" parent="EP3SFlS81vF1yBjOrWmF-46" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;background-color: transparent;&quot;&gt;+ userId: string&lt;/span&gt;&lt;div&gt;+ name: string&lt;/div&gt;" vertex="1">
+          <mxGeometry height="44" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-48" parent="EP3SFlS81vF1yBjOrWmF-46" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-49" parent="EP3SFlS81vF1yBjOrWmF-46" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="12" width="240" y="78" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-50" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="CoordinateSystem&lt;div&gt;&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="240" x="860" y="1059" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-51" parent="EP3SFlS81vF1yBjOrWmF-50" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;+lat: float&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ lon: float&lt;/div&gt;&lt;div&gt;+ alt: float&lt;/div&gt;" vertex="1">
+          <mxGeometry height="54" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-52" parent="EP3SFlS81vF1yBjOrWmF-50" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-53" parent="EP3SFlS81vF1yBjOrWmF-50" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="12" width="240" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-55" edge="1" parent="1" source="EP3SFlS81vF1yBjOrWmF-13" style="endArrow=none;html=1;rounded=0;startArrow=block;startFill=1;dashed=1;dashPattern=8 8;entryX=0.497;entryY=0.999;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="EP3SFlS81vF1yBjOrWmF-4" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="370" y="490" as="sourcePoint" />
+            <mxPoint x="597" y="537" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-57" edge="1" parent="1" source="EP3SFlS81vF1yBjOrWmF-24" style="endArrow=none;html=1;rounded=0;startArrow=block;startFill=1;dashed=1;dashPattern=8 8;entryX=0.476;entryY=-0.003;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.473;exitY=1.005;exitDx=0;exitDy=0;exitPerimeter=0;" target="EP3SFlS81vF1yBjOrWmF-1" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="380" y="490" as="sourcePoint" />
+            <mxPoint x="607" y="537" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-60" edge="1" parent="1" source="EP3SFlS81vF1yBjOrWmF-4" style="endArrow=none;html=1;rounded=0;exitX=0.995;exitY=0.79;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.004;entryY=0.382;entryDx=0;entryDy=0;entryPerimeter=0;" target="EP3SFlS81vF1yBjOrWmF-42" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="930" y="780" as="sourcePoint" />
+            <mxPoint x="930" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-63" edge="1" parent="1" source="EP3SFlS81vF1yBjOrWmF-37" style="endArrow=diamondThin;html=1;rounded=0;endFill=1;exitX=-0.004;exitY=0.32;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.906;entryDx=0;entryDy=0;entryPerimeter=0;" target="EP3SFlS81vF1yBjOrWmF-4" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="950" y="990" as="sourcePoint" />
+            <mxPoint x="820" y="770" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-64" edge="1" parent="1" source="EP3SFlS81vF1yBjOrWmF-8" style="endArrow=none;html=1;rounded=0;exitX=0.459;exitY=0.997;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="EP3SFlS81vF1yBjOrWmF-29" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="950" y="415" as="sourcePoint" />
+            <mxPoint x="1130" y="409" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-65" edge="1" parent="1" source="EP3SFlS81vF1yBjOrWmF-21" style="endArrow=none;html=1;rounded=0;entryX=0.479;entryY=0.988;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="EP3SFlS81vF1yBjOrWmF-20" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="580" y="390" as="sourcePoint" />
+            <mxPoint x="630" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-66" edge="1" parent="1" source="EP3SFlS81vF1yBjOrWmF-25" style="endArrow=none;html=1;rounded=0;entryX=0.807;entryY=1.002;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.548;exitY=-0.004;exitDx=0;exitDy=0;exitPerimeter=0;" target="EP3SFlS81vF1yBjOrWmF-20" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="705" y="310" as="sourcePoint" />
+            <mxPoint x="700" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-67" edge="1" parent="1" source="EP3SFlS81vF1yBjOrWmF-47" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.003;entryY=0.833;entryDx=0;entryDy=0;entryPerimeter=0;" target="EP3SFlS81vF1yBjOrWmF-37" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="860" y="746" as="sourcePoint" />
+            <mxPoint x="1040" y="740" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-68" edge="1" parent="1" source="EP3SFlS81vF1yBjOrWmF-50" style="endArrow=none;html=1;rounded=0;entryX=0.502;entryY=1.037;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="EP3SFlS81vF1yBjOrWmF-39" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="580" y="1009" as="sourcePoint" />
+            <mxPoint x="630" y="959" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-69" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="720" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-70" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="810" y="689" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-71" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="810" y="930" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-72" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="340" y="990" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-73" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="930" y="999" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-74" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="930" y="1029" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-75" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="210" y="689" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-76" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="830" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-78" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="230" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-80" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="560" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-81" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="*" vertex="1">
+          <mxGeometry height="30" width="60" x="570" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-82" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="730" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="EP3SFlS81vF1yBjOrWmF-83" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="*" vertex="1">
+          <mxGeometry height="30" width="60" x="971" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="rLXdTL8ixm0iANSaRPBt-1" parent="1" style="text;whiteSpace=wrap;html=1;fontSize=15;fontFamily=Times New Roman;fontStyle=1" value="Создание локации для обучения операторов БПЛА на основании спутниковых снимков при помощи ИИ" vertex="1">
+          <mxGeometry height="40" width="340" x="30" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="sG9uNuGsDtEXUrvgCrVd-1" parent="1" style="text;whiteSpace=wrap;html=1;fontFamily=Times New Roman;fontSize=13;" value="&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 700; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start; background-color: rgb(255, 255, 255);&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;span style=&quot;forced-color-adjust: none; white-space-collapse: preserve;&quot;&gt;LocationCreationService - основной управл. класс-процессор&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 700; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start; background-color: rgb(255, 255, 255);&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;span style=&quot;forced-color-adjust: none; white-space-collapse: preserve;&quot;&gt;SatelliteImage - спутниковые изображения &lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 700; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start; background-color: rgb(255, 255, 255);&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;span style=&quot;forced-color-adjust: none; white-space-collapse: preserve;&quot;&gt;ImagePreprocessor - очистка, нормализация, подготовка входа для ИИ&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; white-space-collapse: preserve;&quot;&gt;&lt;font&gt;&lt;b&gt;NeuralNetworkModel - семантическая сегментация снимка&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; white-space-collapse: preserve;&quot;&gt;&lt;font&gt;&lt;b&gt;SegmentationResult - хранит карты объектов&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; white-space-collapse: preserve;&quot;&gt;&lt;font&gt;&lt;b&gt;TerrainGenerator - делает рельеф из высотных карт и масок&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; white-space-collapse: preserve;&quot;&gt;&lt;font&gt;&lt;b&gt;ObjectGenerator - генерирует 3д-объектыпо маскам&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; white-space-collapse: preserve;&quot;&gt;&lt;font&gt;&lt;b&gt;MapMetadataExtractor - вытаскивает метаданные из спутникового снимка&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; white-space-collapse: preserve;&quot;&gt;&lt;font&gt;&lt;b&gt;GeneratedLocation - готовая локация&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; white-space-collapse: preserve;&quot;&gt;&lt;font&gt;&lt;b&gt;LocationStorage - хранилище локаций&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; white-space-collapse: preserve;&quot;&gt;&lt;font&gt;&lt;b&gt;LocationValidation - проверяет корректность созданной локации&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;font&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;b&gt;User - кто создаёт локации&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;b&gt;CoordinateSystem - работа с географией&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; white-space-collapse: preserve;&quot;&gt;&lt;font&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; white-space-collapse: preserve;&quot;&gt;&lt;font&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; white-space-collapse: preserve;&quot;&gt;&lt;font&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; white-space-collapse: preserve;&quot;&gt;&lt;font&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; white-space-collapse: preserve;&quot;&gt;&lt;font&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 700; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-wrap-mode: wrap; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start; background-color: rgb(255, 255, 255);&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;font&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;br style=&quot;forced-color-adjust: none;&quot;&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 700; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start; background-color: rgb(255, 255, 255);&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;span style=&quot;forced-color-adjust: none; white-space-collapse: preserve;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="450" x="30" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="qnlQDcJHlAk-CIaJUeOK-1" edge="1" parent="1" source="EP3SFlS81vF1yBjOrWmF-4" style="endArrow=classic;startArrow=none;html=1;rounded=0;startFill=0;dashed=1;entryX=0.077;entryY=1.008;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.989;exitY=0.031;exitDx=0;exitDy=0;exitPerimeter=0;" target="EP3SFlS81vF1yBjOrWmF-28" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="820" y="510" as="sourcePoint" />
+            <mxPoint x="937" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qnlQDcJHlAk-CIaJUeOK-2" edge="1" parent="1" source="EP3SFlS81vF1yBjOrWmF-4" style="endArrow=classic;startArrow=none;html=1;rounded=0;startFill=0;dashed=1;entryX=0.006;entryY=0.585;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1.006;exitY=0.524;exitDx=0;exitDy=0;exitPerimeter=0;" target="EP3SFlS81vF1yBjOrWmF-45" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="820" y="620" as="sourcePoint" />
+            <mxPoint x="937" y="580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qnlQDcJHlAk-CIaJUeOK-4" edge="1" parent="1" source="EP3SFlS81vF1yBjOrWmF-4" style="endArrow=classic;startArrow=none;html=1;rounded=0;startFill=0;dashed=1;exitX=0.003;exitY=0.615;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.996;entryY=0.769;entryDx=0;entryDy=0;entryPerimeter=0;" target="EP3SFlS81vF1yBjOrWmF-6" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="360" y="525" as="sourcePoint" />
+            <mxPoint x="400" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qnlQDcJHlAk-CIaJUeOK-5" edge="1" parent="1" source="EP3SFlS81vF1yBjOrWmF-4" style="endArrow=classic;startArrow=none;html=1;rounded=0;startFill=0;dashed=1;exitX=-0.017;exitY=0.267;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="EP3SFlS81vF1yBjOrWmF-12" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="522" y="637" as="sourcePoint" />
+            <mxPoint x="370" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="FxqhQ5-itNTBTdt0jaxc" name="Инициализация и настройка симуляции">
+    <mxGraphModel dx="1240" dy="653" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-1" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;SimulationSetupService&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="210" width="240" x="340" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-2" parent="h9teM_-oSYqmlKa1OgHf-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;- resourceManager: ResourceManager&lt;br/&gt;- uavFactory: UAVFactory&lt;br/&gt;- physicsEngine: PhysicsEngine&lt;/span&gt;" vertex="1">
+          <mxGeometry height="54" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-3" parent="h9teM_-oSYqmlKa1OgHf-1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-4" parent="h9teM_-oSYqmlKa1OgHf-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ createSession(config: SimulationConfig): SimulationSession&lt;br/&gt;- loadEnvironment(config: SimulationConfig): void&lt;br/&gt;- initPhysics(config: SimulationConfig): void&lt;br/&gt;- initUAVs(config: SimulationConfig): List&amp;lt;UAV&amp;gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="122" width="240" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-5" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;SimulationConfig&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="700" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-6" parent="h9teM_-oSYqmlKa1OgHf-5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ environmentPath: String&lt;br/&gt;+ physicsParams: Map&amp;lt;String, float&amp;gt;&lt;br/&gt;+ uavModels: List&amp;lt;String&amp;gt;&lt;br/&gt;+ scenarioName: String&lt;/span&gt;" vertex="1">
+          <mxGeometry height="64" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-7" parent="h9teM_-oSYqmlKa1OgHf-5" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-8" parent="h9teM_-oSYqmlKa1OgHf-5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ isValid(): bool&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="22" width="240" y="98" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-9" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;ResourceManager&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="240" x="40" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-10" parent="h9teM_-oSYqmlKa1OgHf-9" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;- cache: Map&amp;lt;String, Asset&amp;gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="24" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-11" parent="h9teM_-oSYqmlKa1OgHf-9" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-12" parent="h9teM_-oSYqmlKa1OgHf-9" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ loadEnvironment(path: String): Environment&lt;br/&gt;+ loadModel(path: String): Model&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="240" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-13" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;PhysicsEngine&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="240" x="710" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-14" parent="h9teM_-oSYqmlKa1OgHf-13" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ timestep: float&lt;/span&gt;" vertex="1">
+          <mxGeometry height="24" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-15" parent="h9teM_-oSYqmlKa1OgHf-13" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-16" parent="h9teM_-oSYqmlKa1OgHf-13" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ configure(params: Map&amp;lt;String, float&amp;gt;): void&lt;br/&gt;+ registerUAV(uav: UAV): void&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="240" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-17" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;UAVFactory&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="240" x="40" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-19" parent="h9teM_-oSYqmlKa1OgHf-17" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-20" parent="h9teM_-oSYqmlKa1OgHf-17" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ create (modelPath: String): UAV&lt;/span&gt;" vertex="1">
+          <mxGeometry height="26" width="240" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-21" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;SimulationSession&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="340" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-22" parent="h9teM_-oSYqmlKa1OgHf-21" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ physics: PhysicsEngine&lt;br&gt;+ uavs: List&amp;lt;UAV&amp;gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="44" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-23" parent="h9teM_-oSYqmlKa1OgHf-21" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="h9teM_-oSYqmlKa1OgHf-24" parent="h9teM_-oSYqmlKa1OgHf-21" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ start(): void&lt;br/&gt;+ stop(): void&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="42" width="240" y="78" as="geometry" />
+        </mxCell>
+        <mxCell id="L0iT6S1yHwZVxW5Ebh_x-1" edge="1" parent="1" source="h9teM_-oSYqmlKa1OgHf-12" style="endArrow=none;html=1;rounded=0;exitX=0.996;exitY=0.269;exitDx=0;exitDy=0;entryX=-0.004;entryY=0.352;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" target="h9teM_-oSYqmlKa1OgHf-4" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="595" y="687" as="sourcePoint" />
+            <mxPoint x="1099" y="632" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="L0iT6S1yHwZVxW5Ebh_x-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="260" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="L0iT6S1yHwZVxW5Ebh_x-3" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="300" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="L0iT6S1yHwZVxW5Ebh_x-4" edge="1" parent="1" source="h9teM_-oSYqmlKa1OgHf-4" style="endArrow=none;html=1;rounded=0;exitX=0.998;exitY=0.705;exitDx=0;exitDy=0;entryX=0.004;entryY=0.298;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" target="h9teM_-oSYqmlKa1OgHf-16" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="560" y="460" as="sourcePoint" />
+            <mxPoint x="620" y="529" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="L0iT6S1yHwZVxW5Ebh_x-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="560" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="L0iT6S1yHwZVxW5Ebh_x-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="670" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="L0iT6S1yHwZVxW5Ebh_x-7" edge="1" parent="1" source="h9teM_-oSYqmlKa1OgHf-4" style="endArrow=none;html=1;rounded=0;exitX=0.001;exitY=0.781;exitDx=0;exitDy=0;entryX=1.003;entryY=0.221;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" target="h9teM_-oSYqmlKa1OgHf-20" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="640" y="430" as="sourcePoint" />
+            <mxPoint x="771" y="539" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0BZF_tNmoGZC4p1sBbYD-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="300" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="0BZF_tNmoGZC4p1sBbYD-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="260" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="JoomiBvre_eKuOpxi9vk-1" edge="1" parent="1" source="h9teM_-oSYqmlKa1OgHf-21" style="endArrow=diamondThin;html=1;rounded=0;endFill=1;exitX=0.542;exitY=0.01;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.466;entryY=0.979;entryDx=0;entryDy=0;entryPerimeter=0;" target="h9teM_-oSYqmlKa1OgHf-4" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="429" y="880" as="sourcePoint" />
+            <mxPoint x="310" y="680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JoomiBvre_eKuOpxi9vk-2" edge="1" parent="1" source="h9teM_-oSYqmlKa1OgHf-22" style="endArrow=none;html=1;rounded=0;exitX=0.998;exitY=0.687;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;" target="h9teM_-oSYqmlKa1OgHf-16" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="610" y="410" as="sourcePoint" />
+            <mxPoint x="741" y="519" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JoomiBvre_eKuOpxi9vk-3" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="570" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="JoomiBvre_eKuOpxi9vk-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="660" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="JoomiBvre_eKuOpxi9vk-5" edge="1" parent="1" source="h9teM_-oSYqmlKa1OgHf-22" style="endArrow=none;html=1;rounded=0;exitX=-0.009;exitY=0.8;exitDx=0;exitDy=0;entryX=0.658;entryY=1.027;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" target="h9teM_-oSYqmlKa1OgHf-20" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="670" y="589" as="sourcePoint" />
+            <mxPoint x="800" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JoomiBvre_eKuOpxi9vk-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="300" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="JoomiBvre_eKuOpxi9vk-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="*" vertex="1">
+          <mxGeometry height="30" width="60" x="230" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="JoomiBvre_eKuOpxi9vk-8" parent="1" style="text;whiteSpace=wrap;html=1;fontFamily=Times New Roman;fontSize=13;" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 700; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;ResourceManager - отвечает за загрузку среды&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="290" x="80" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JoomiBvre_eKuOpxi9vk-9" parent="1" style="text;whiteSpace=wrap;html=1;fontFamily=Times New Roman;fontSize=13;" value="&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 700; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start; background-color: rgb(255, 255, 255);&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;span style=&quot;forced-color-adjust: none; white-space-collapse: preserve;&quot;&gt;SimulationSetupService - главный класс&lt;/span&gt;&lt;/font&gt;&lt;br style=&quot;forced-color-adjust: none;&quot;&gt;&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="20" width="260" x="80" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="JoomiBvre_eKuOpxi9vk-10" parent="1" style="text;whiteSpace=wrap;html=1;fontFamily=Times New Roman;fontSize=13;" value="&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 700; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start; background-color: rgb(255, 255, 255);&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;span style=&quot;forced-color-adjust: none; white-space-collapse: preserve;&quot;&gt;SimulationConfig - хранит параметры симуляции&lt;/span&gt;&lt;/font&gt;&lt;br style=&quot;forced-color-adjust: none;&quot;&gt;&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="20" width="310" x="80" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="JoomiBvre_eKuOpxi9vk-11" parent="1" style="text;whiteSpace=wrap;html=1;fontFamily=Times New Roman;fontSize=13;" value="&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 700; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start; background-color: rgb(255, 255, 255);&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;span style=&quot;forced-color-adjust: none; white-space-collapse: preserve;&quot;&gt;UAVFactory - создаёт экземпляры БПЛА по молелям&lt;/span&gt;&lt;/font&gt;&lt;br style=&quot;forced-color-adjust: none;&quot;&gt;&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="350" x="80" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="JoomiBvre_eKuOpxi9vk-12" parent="1" style="text;whiteSpace=wrap;html=1;fontFamily=Times New Roman;fontSize=13;" value="&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 700; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start; background-color: rgb(255, 255, 255);&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;span style=&quot;forced-color-adjust: none; white-space-collapse: preserve;&quot;&gt;SimulationSession - главный объект запуска&lt;/span&gt;&lt;/font&gt;&lt;br style=&quot;forced-color-adjust: none;&quot;&gt;&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="20" width="290" x="80" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="JoomiBvre_eKuOpxi9vk-13" parent="1" style="text;whiteSpace=wrap;html=1;fontFamily=Times New Roman;fontSize=13;" value="&lt;span style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 700; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start; background-color: rgb(255, 255, 255);&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;span style=&quot;forced-color-adjust: none; white-space-collapse: preserve;&quot;&gt;PhysicsEngine - отвечает за физ. модель симуляции&lt;/span&gt;&lt;/font&gt;&lt;br style=&quot;forced-color-adjust: none;&quot;&gt;&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="20" width="330" x="80" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="AHOas9Dm0g_5Iy0i7Yi1-1" parent="1" style="text;whiteSpace=wrap;html=1;fontSize=15;fontFamily=Times New Roman;fontStyle=1" value="Инициализация и настройка симуляции" vertex="1">
+          <mxGeometry height="40" width="340" x="487" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kfboOhoSLB2-ZEi0GxnS-1" edge="1" parent="1" source="h9teM_-oSYqmlKa1OgHf-4" style="endArrow=classic;startArrow=none;html=1;rounded=0;startFill=0;dashed=1;entryX=-0.003;entryY=0.584;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1.008;exitY=0.283;exitDx=0;exitDy=0;exitPerimeter=0;" target="h9teM_-oSYqmlKa1OgHf-6" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="660" y="419" as="sourcePoint" />
+            <mxPoint x="763" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="sGu6iH5DFaC21tXiYdeD" name="Моделирование физических и погодных условий ">
+    <mxGraphModel dx="1141" dy="601" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="a3kt5DyKMHNGE6kQg4cC-1" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;EnvironmentSimulator&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="210" width="240" x="360" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="a3kt5DyKMHNGE6kQg4cC-2" parent="a3kt5DyKMHNGE6kQg4cC-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;- physicsModel: PhysicsModel&lt;br/&gt;- weatherModel: WeatherModel&lt;br/&gt;- terrainModel: TerrainModel&lt;/span&gt;" vertex="1">
+          <mxGeometry height="54" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="a3kt5DyKMHNGE6kQg4cC-3" parent="a3kt5DyKMHNGE6kQg4cC-1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="a3kt5DyKMHNGE6kQg4cC-4" parent="a3kt5DyKMHNGE6kQg4cC-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ update(uavState: UAVState, dt: float): EnvironmentUpdateResult&lt;br/&gt;- computePhysics(uavState: UAVState, dt: float): Vector3&lt;br/&gt;- computeWeather(uavState: UAVState, dt: float): Vector3&lt;br/&gt;- computeTerrainEffects(uavState: UAVState): Vector3&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="122" width="240" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="a3kt5DyKMHNGE6kQg4cC-43" parent="1" style="text;whiteSpace=wrap;html=1;fontFamily=Times New Roman;fontSize=13;" value="&lt;span style=&quot;forced-color-adjust: none; orphans: 2; text-indent: 0px; widows: 2; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;span style=&quot;forced-color-adjust: none;&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;b&gt;EnvironmentSimulator - основной сервис модели среды&lt;/b&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;font&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;b&gt;PhysicsModel - физическая модель&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;b&gt;WeatherModel - погодная модель&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;b&gt;TerrainModel - модель рельефа&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;UAVState - состояние БПЛА, на которое возд. физика и погода&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;b&gt;EnvironmentUpdateResult - результат моделирования среды&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;div&gt;&lt;span style=&quot;forced-color-adjust: none; orphans: 2; text-indent: 0px; widows: 2; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;span style=&quot;forced-color-adjust: none;&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/span&gt;&lt;font color=&quot;rgba(0, 0, 0, 0)&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;b&gt; &lt;/b&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;br style=&quot;forced-color-adjust: none;&quot;&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="400" x="20" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="a3kt5DyKMHNGE6kQg4cC-47" parent="1" style="text;whiteSpace=wrap;html=1;fontSize=15;fontFamily=Times New Roman;fontStyle=1" value="Моделирование физических и погодных условий&amp;nbsp;" vertex="1">
+          <mxGeometry height="40" width="340" x="487" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KD45XHqIiBSEYmgB0Ufx-1" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;PhysicsModel&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="130" width="210" x="650" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="KD45XHqIiBSEYmgB0Ufx-2" parent="KD45XHqIiBSEYmgB0Ufx-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ gravity: float&lt;br/&gt;+ dragCoefficient: float&lt;br/&gt;+ massModel: Map&amp;lt;String, float&amp;gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="54" width="210" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="KD45XHqIiBSEYmgB0Ufx-3" parent="KD45XHqIiBSEYmgB0Ufx-1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="210" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="KD45XHqIiBSEYmgB0Ufx-4" parent="KD45XHqIiBSEYmgB0Ufx-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ computeForces(uav: UAVState): Vector3&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="42" width="210" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="gFP2pPh4QgYwX6LfLye3-1" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;WeatherModel&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="240" x="30" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="gFP2pPh4QgYwX6LfLye3-2" parent="gFP2pPh4QgYwX6LfLye3-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ windSpeed: float&lt;br/&gt;+ windDirection: float&lt;br/&gt;+ turbulenceLevel: float&lt;br/&gt;+ temperature: float&lt;/span&gt;" vertex="1">
+          <mxGeometry height="64" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="gFP2pPh4QgYwX6LfLye3-3" parent="gFP2pPh4QgYwX6LfLye3-1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="gFP2pPh4QgYwX6LfLye3-4" parent="gFP2pPh4QgYwX6LfLye3-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ computeWind(uav: UAVState): Vector3&lt;br/&gt;+ computeTemperatureEffect(uav: UAVState): float&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="240" y="98" as="geometry" />
+        </mxCell>
+        <mxCell id="gFP2pPh4QgYwX6LfLye3-5" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;TerrainModel&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="130" width="240" x="760" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="gFP2pPh4QgYwX6LfLye3-6" parent="gFP2pPh4QgYwX6LfLye3-5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ heightmap: Heightmap&lt;br/&gt;+ roughnessMap: Map&amp;lt;Vector2, float&amp;gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="44" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="gFP2pPh4QgYwX6LfLye3-7" parent="gFP2pPh4QgYwX6LfLye3-5" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="gFP2pPh4QgYwX6LfLye3-8" parent="gFP2pPh4QgYwX6LfLye3-5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ getAltitude(position: Vector3): float&lt;br/&gt;+ getSurfaceNormal(position: Vector3): Vector3&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="240" y="78" as="geometry" />
+        </mxCell>
+        <mxCell id="gFP2pPh4QgYwX6LfLye3-9" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;UAVState&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="240" x="610" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="gFP2pPh4QgYwX6LfLye3-10" parent="gFP2pPh4QgYwX6LfLye3-9" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ position: Vector3&lt;br/&gt;+ velocity: Vector3&lt;br/&gt;+ orientation: Quaternion&lt;br/&gt;+ mass: float&lt;/span&gt;" vertex="1">
+          <mxGeometry height="74" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="gFP2pPh4QgYwX6LfLye3-11" parent="gFP2pPh4QgYwX6LfLye3-9" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="gFP2pPh4QgYwX6LfLye3-12" parent="gFP2pPh4QgYwX6LfLye3-9" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ applyForces(forces: Vector3, dt: float): void&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="42" width="240" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="pGlg1POFE-68_yK4_IYR-1" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;EnvironmentUpdateResult&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="240" x="150" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="pGlg1POFE-68_yK4_IYR-2" parent="pGlg1POFE-68_yK4_IYR-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ totalForce: Vector3&lt;br/&gt;+ windForce: Vector3&lt;br/&gt;+ terrainEffect: Vector3&lt;br/&gt;+ physicsForce: Vector3&lt;/span&gt;" vertex="1">
+          <mxGeometry height="64" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="pGlg1POFE-68_yK4_IYR-3" parent="pGlg1POFE-68_yK4_IYR-1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="pGlg1POFE-68_yK4_IYR-4" parent="pGlg1POFE-68_yK4_IYR-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="12" width="240" y="98" as="geometry" />
+        </mxCell>
+        <mxCell id="B_39Zzu-ArvsNz1uGdWK-1" edge="1" parent="1" source="a3kt5DyKMHNGE6kQg4cC-4" style="endArrow=none;html=1;rounded=0;exitX=0.997;exitY=0.268;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.001;entryY=0.688;entryDx=0;entryDy=0;entryPerimeter=0;" target="KD45XHqIiBSEYmgB0Ufx-2" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="650" y="320" as="sourcePoint" />
+            <mxPoint x="700" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B_39Zzu-ArvsNz1uGdWK-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="610" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="B_39Zzu-ArvsNz1uGdWK-3" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="580" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="B_39Zzu-ArvsNz1uGdWK-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="250" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="B_39Zzu-ArvsNz1uGdWK-5" edge="1" parent="1" source="gFP2pPh4QgYwX6LfLye3-2" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.893;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.01;entryY=0.411;entryDx=0;entryDy=0;entryPerimeter=0;" target="a3kt5DyKMHNGE6kQg4cC-4" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="610" y="428" as="sourcePoint" />
+            <mxPoint x="701" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B_39Zzu-ArvsNz1uGdWK-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="320" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="B_39Zzu-ArvsNz1uGdWK-8" edge="1" parent="1" source="gFP2pPh4QgYwX6LfLye3-6" style="endArrow=none;html=1;rounded=0;exitX=0.001;exitY=0.693;exitDx=0;exitDy=0;entryX=0.486;entryY=0.985;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" target="a3kt5DyKMHNGE6kQg4cC-4" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="310" y="390" as="sourcePoint" />
+            <mxPoint x="378" y="415" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B_39Zzu-ArvsNz1uGdWK-9" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="460" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="B_39Zzu-ArvsNz1uGdWK-10" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="710" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="B_39Zzu-ArvsNz1uGdWK-11" edge="1" parent="1" source="a3kt5DyKMHNGE6kQg4cC-1" style="endArrow=classic;startArrow=none;html=1;rounded=0;startFill=0;dashed=1;entryX=-0.006;entryY=0.609;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.691;exitY=-0.001;exitDx=0;exitDy=0;exitPerimeter=0;" target="gFP2pPh4QgYwX6LfLye3-10" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="500" y="170" as="sourcePoint" />
+            <mxPoint x="550" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SMZBmY5bzyfa6JKbZGt3-1" edge="1" parent="1" source="KD45XHqIiBSEYmgB0Ufx-1" style="endArrow=classic;startArrow=none;html=1;rounded=0;startFill=0;dashed=1;entryX=0.483;entryY=1.071;entryDx=0;entryDy=0;entryPerimeter=0;" target="gFP2pPh4QgYwX6LfLye3-12" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="540" y="389" as="sourcePoint" />
+            <mxPoint x="643" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SMZBmY5bzyfa6JKbZGt3-2" edge="1" parent="1" source="gFP2pPh4QgYwX6LfLye3-2" style="endArrow=classic;startArrow=none;html=1;rounded=0;startFill=0;dashed=1;entryX=0;entryY=0.23;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="gFP2pPh4QgYwX6LfLye3-10" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="808" y="397" as="sourcePoint" />
+            <mxPoint x="750" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SMZBmY5bzyfa6JKbZGt3-3" edge="1" parent="1" source="gFP2pPh4QgYwX6LfLye3-5" style="endArrow=classic;startArrow=none;html=1;rounded=0;startFill=0;dashed=1;entryX=0.911;entryY=1.036;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.904;exitY=-0.001;exitDx=0;exitDy=0;exitPerimeter=0;" target="gFP2pPh4QgYwX6LfLye3-12" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="840" y="477" as="sourcePoint" />
+            <mxPoint x="770" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hYCZ-zavnBMbHTIY_92t-1" edge="1" parent="1" source="pGlg1POFE-68_yK4_IYR-2" style="endArrow=diamondThin;html=1;rounded=0;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.297;entryY=1.005;entryDx=0;entryDy=0;entryPerimeter=0;" target="a3kt5DyKMHNGE6kQg4cC-4" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="510" y="201" as="sourcePoint" />
+            <mxPoint x="410" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="xMhFz57SymaaUuiL9LHD" name="Симуляция полёта БПЛА ">
+    <mxGraphModel dx="1426" dy="751" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="sXqR_BDJWUkJ0k_u0o0N-5" parent="1" style="text;whiteSpace=wrap;html=1;fontFamily=Times New Roman;fontSize=13;" value="&lt;font&gt;&lt;span style=&quot;forced-color-adjust: none; orphans: 2; text-indent: 0px; widows: 2; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;span style=&quot;forced-color-adjust: none;&quot;&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;font style=&quot;&quot; face=&quot;Times New Roman&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;FlightSimulator&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;b&gt; - центральный сервис симуляции полёта&lt;br&gt;&lt;/b&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;font-weight: 700; background-color: rgb(255, 255, 255);&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;ControlSystem -&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;b style=&quot;white-space-collapse: preserve; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt; система управления БПЛА&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;div&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 12px; font-weight: 700; white-space-collapse: preserve; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;font face=&quot;Times New Roman&quot;&gt;NavigationSystem &lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;b&gt;- навигационный модуль&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 12px; font-weight: 700; white-space-collapse: preserve; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;ActuatorModel&lt;/span&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;b&gt; - модель исполнительных механизмов &lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;UAVState - состояние БПЛА&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 12px; font-weight: 700; white-space-collapse: preserve; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;FlightUpdateResult&lt;/span&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;b&gt;&amp;nbsp;- результат шага симуляции&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;div&gt;&lt;span style=&quot;forced-color-adjust: none; orphans: 2; text-indent: 0px; widows: 2; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; text-align: start; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;font style=&quot;forced-color-adjust: none;&quot;&gt;&lt;span style=&quot;forced-color-adjust: none;&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/span&gt;&lt;font color=&quot;rgba(0, 0, 0, 0)&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;b&gt; &lt;/b&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;br style=&quot;forced-color-adjust: none;&quot;&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="400" x="30" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sXqR_BDJWUkJ0k_u0o0N-6" parent="1" style="text;whiteSpace=wrap;html=1;fontSize=15;fontFamily=Times New Roman;fontStyle=1" value="Симуляция полёта БПЛА&amp;nbsp;" vertex="1">
+          <mxGeometry height="40" width="340" x="487" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sXqR_BDJWUkJ0k_u0o0N-11" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;FlightSimulator&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="200" width="240" x="410" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="sXqR_BDJWUkJ0k_u0o0N-12" parent="sXqR_BDJWUkJ0k_u0o0N-11" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;- controlSystem: ControlSystem&lt;br/&gt;- navigationSystem: NavigationSystem&lt;br/&gt;- actuatorModel: ActuatorModel&lt;/span&gt;" vertex="1">
+          <mxGeometry height="54" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="sXqR_BDJWUkJ0k_u0o0N-13" parent="sXqR_BDJWUkJ0k_u0o0N-11" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sXqR_BDJWUkJ0k_u0o0N-14" parent="sXqR_BDJWUkJ0k_u0o0N-11" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ update(uavState: UAVState, dt: float): FlightUpdateResult&lt;br/&gt;- computeControl(uavState: UAVState): ControlCommands&lt;br/&gt;- applyActuators(uavState: UAVState, commands: ControlCommands, dt: float): void&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="112" width="240" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-1" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;ControlSystem&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="240" x="760" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-2" parent="H6Rokl6WLIjTrPSE8d3u-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ pidRoll: PIDController&lt;br/&gt;+ pidPitch: PIDController&lt;br/&gt;+ pidYaw: PIDController&lt;br/&gt;+ pidAltitude: PIDController&lt;/span&gt;" vertex="1">
+          <mxGeometry height="64" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-3" parent="H6Rokl6WLIjTrPSE8d3u-1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-4" parent="H6Rokl6WLIjTrPSE8d3u-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ computeCommands(uav: UAVState, navData: NavigationData): ControlCommands&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="240" y="98" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-5" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;NavigationSystem&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="130" width="240" x="50" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-6" parent="H6Rokl6WLIjTrPSE8d3u-5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ targetWaypoint: Vector3&lt;br/&gt;+ gpsSignalQuality: float&lt;br/&gt;+ navigationMode: NavigationMode&lt;/span&gt;" vertex="1">
+          <mxGeometry height="54" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-7" parent="H6Rokl6WLIjTrPSE8d3u-5" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-8" parent="H6Rokl6WLIjTrPSE8d3u-5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ computeNavigation(uav: UAVState): NavigationData&lt;div&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="42" width="240" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-9" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;ActuatorModel&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="130" width="240" x="60" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-10" parent="H6Rokl6WLIjTrPSE8d3u-9" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ motorResponseTime: float&lt;br/&gt;+ maxThrust: float&lt;br/&gt;+ servoLatency: float&lt;br/&gt;&lt;/span&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="54" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-11" parent="H6Rokl6WLIjTrPSE8d3u-9" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-12" parent="H6Rokl6WLIjTrPSE8d3u-9" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ computeActuatorResponse(commands: ControlCommands): ActuatorState&lt;div&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="42" width="240" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-13" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;UAVState&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="240" x="374" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-14" parent="H6Rokl6WLIjTrPSE8d3u-13" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ position: Vector3&lt;br/&gt;+ velocity: Vector3&lt;br/&gt;+ orientation: Quaternion&lt;br/&gt;+ angularVelocity: Vector3&lt;br/&gt;+ batteryLevel: float&lt;br/&gt;&lt;/span&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="84" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-15" parent="H6Rokl6WLIjTrPSE8d3u-13" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-16" parent="H6Rokl6WLIjTrPSE8d3u-13" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ applyActuatorState(actuators: ActuatorState, dt: float): void&lt;div&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="42" width="240" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-17" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: start; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;font style=&quot;&quot;&gt;&lt;font face=&quot;Roboto, -apple-system, apple color emoji, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif&quot;&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;FlightUpdateResult&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-family: Roboto, -apple-system, &amp;quot;apple color emoji&amp;quot;, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 16px; font-weight: 400; text-align: start; white-space-collapse: preserve; background-color: rgb(226, 247, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="240" x="740" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-18" parent="H6Rokl6WLIjTrPSE8d3u-17" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;+ navigationData: NavigationData&lt;br/&gt;+ controlCommands: ControlCommands&lt;br/&gt;+ actuatorState: ActuatorState&lt;br/&gt;+ updatedUavState: UAVState&lt;/span&gt;&lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="64" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-19" parent="H6Rokl6WLIjTrPSE8d3u-17" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="H6Rokl6WLIjTrPSE8d3u-20" parent="H6Rokl6WLIjTrPSE8d3u-17" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;div&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="12" width="240" y="98" as="geometry" />
+        </mxCell>
+        <mxCell id="RN-LJKtGhsM6vJL4BZGv-1" edge="1" parent="1" source="H6Rokl6WLIjTrPSE8d3u-2" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1.003;entryY=0.371;entryDx=0;entryDy=0;entryPerimeter=0;" target="sXqR_BDJWUkJ0k_u0o0N-14" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1013" y="768" as="sourcePoint" />
+            <mxPoint x="730" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RN-LJKtGhsM6vJL4BZGv-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="707" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="RN-LJKtGhsM6vJL4BZGv-3" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="640" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="RN-LJKtGhsM6vJL4BZGv-4" edge="1" parent="1" source="H6Rokl6WLIjTrPSE8d3u-8" style="endArrow=none;html=1;rounded=0;exitX=1.005;exitY=0.194;exitDx=0;exitDy=0;entryX=-0.013;entryY=0.245;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" target="sXqR_BDJWUkJ0k_u0o0N-14" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="799" y="520" as="sourcePoint" />
+            <mxPoint x="690" y="662" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RN-LJKtGhsM6vJL4BZGv-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="280" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="RN-LJKtGhsM6vJL4BZGv-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="370" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="RN-LJKtGhsM6vJL4BZGv-7" edge="1" parent="1" source="H6Rokl6WLIjTrPSE8d3u-10" style="endArrow=none;html=1;rounded=0;exitX=0.996;exitY=0.611;exitDx=0;exitDy=0;entryX=0.002;entryY=0.787;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" target="sXqR_BDJWUkJ0k_u0o0N-14" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="350" y="520" as="sourcePoint" />
+            <mxPoint x="466" y="579" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RN-LJKtGhsM6vJL4BZGv-8" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="280" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="RN-LJKtGhsM6vJL4BZGv-9" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="370" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="9w6VfZRtZZURlUkw6jDs-1" edge="1" parent="1" source="sXqR_BDJWUkJ0k_u0o0N-11" style="endArrow=classic;startArrow=none;html=1;rounded=0;startFill=0;dashed=1;entryX=0.473;entryY=0.976;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.549;exitY=0.013;exitDx=0;exitDy=0;exitPerimeter=0;" target="H6Rokl6WLIjTrPSE8d3u-16" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="567" y="653.01" as="sourcePoint" />
+            <mxPoint x="481.2000000000003" y="335.00199999999995" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9w6VfZRtZZURlUkw6jDs-2" edge="1" parent="1" source="H6Rokl6WLIjTrPSE8d3u-2" style="endArrow=classic;startArrow=none;html=1;rounded=0;startFill=0;dashed=1;entryX=0.801;entryY=0.976;entryDx=0;entryDy=0;entryPerimeter=0;exitX=-0.004;exitY=0.147;exitDx=0;exitDy=0;exitPerimeter=0;" target="H6Rokl6WLIjTrPSE8d3u-16" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="604" y="504" as="sourcePoint" />
+            <mxPoint x="550" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9w6VfZRtZZURlUkw6jDs-3" edge="1" parent="1" source="H6Rokl6WLIjTrPSE8d3u-6" style="endArrow=classic;startArrow=none;html=1;rounded=0;startFill=0;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.999;exitY=0.28;exitDx=0;exitDy=0;exitPerimeter=0;" target="H6Rokl6WLIjTrPSE8d3u-16" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="584" y="514" as="sourcePoint" />
+            <mxPoint x="530" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="AaRvSXO3MA2s28FzD9Ja-1" edge="1" parent="1" source="H6Rokl6WLIjTrPSE8d3u-18" style="endArrow=diamondThin;html=1;rounded=0;endFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.823;entryY=1.004;entryDx=0;entryDy=0;entryPerimeter=0;" target="sXqR_BDJWUkJ0k_u0o0N-14" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="610" y="907" as="sourcePoint" />
+            <mxPoint x="651" y="800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
